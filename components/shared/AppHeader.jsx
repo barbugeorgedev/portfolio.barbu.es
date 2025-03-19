@@ -116,7 +116,7 @@ function AppHeader() {
               onClick={() =>
                 window.open(process.env.NEXT_PUBLIC_CV_SITE_URL, "_blank")
               }
-              className="font-general-medium sm:hidden block text-left text-md bg-blue-500 hover:bg-blue-600 text-white shadow-sm rounded-sm px-4 py-2 mt-2 duration-300 w-24"
+              className="font-general-medium sm:hidden block text-left text-md bg-blue-500 hover:bg-blue-600 text-white shadow-sm rounded-sm px-4 py-2 mt-2 duration-300 w-32"
               aria-label="My CV Button"
             >
               My Resume
