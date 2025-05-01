@@ -13,7 +13,8 @@ function AppBanner() {
     const fetchPDFUrl = async () => {
       try {
         const response = await fetch(
-          "https://george.barbu.es/api/pdf/george-barbu-general.pdf?role=general",
+          "https://george.barbu.es/api/pdf/george-barbu-general.pdf?role=" +
+            process.env.NEXT_PUBLIC_RESUME_ROLE,
           { method: "GET", mode: "cors" }
         );
 

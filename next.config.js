@@ -1,6 +1,11 @@
 module.exports = {
   reactStrictMode: true,
   images: {
-    domains: ["cdn.sanity.io"], // Add the external domain here
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "cdn.sanity.io",
+      },
+    ],
   },
 };
