@@ -14,19 +14,34 @@ function ContactForm() {
   const [captchaToken, setCaptchaToken] = useState("");
   const [loading, setLoading] = useState(false);
   const [responseMessage, setResponseMessage] = useState("");
+  const [messageType, setMessageType] = useState(""); // "success" or "error"
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
+  // Auto-hide success message after 20 seconds
+  useEffect(() => {
+    if (responseMessage && messageType === "success") {
+      const timer = setTimeout(() => {
+        setResponseMessage("");
+        setMessageType("");
+      }, 20000); // 20 seconds
+
+      return () => clearTimeout(timer);
+    }
+  }, [responseMessage, messageType]);
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
     setResponseMessage("");
+    setMessageType("");
 
     // Validation checks
     if (!formData.name.trim()) {
       setResponseMessage("Name is required.");
+      setMessageType("error");
       setLoading(false);
       return;
     }
@@ -36,6 +51,7 @@ function ContactForm() {
       !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)
     ) {
       setResponseMessage("Enter a valid email.");
+      setMessageType("error");
       setLoading(false);
       return;
     }
@@ -46,6 +62,7 @@ function ContactForm() {
       formData.subject.length > 100
     ) {
       setResponseMessage("Subject must be between 3 and 100 characters.");
+      setMessageType("error");
       setLoading(false);
       return;
     }
@@ -56,12 +73,14 @@ function ContactForm() {
       formData.message.length > 1000
     ) {
       setResponseMessage("Message must be between 10 and 1000 characters.");
+      setMessageType("error");
       setLoading(false);
       return;
     }
 
     if (!captchaToken) {
       setResponseMessage("reCAPTCHA verification failed. Try again.");
+      setMessageType("error");
       setLoading(false);
       return;
     }
@@ -80,11 +99,13 @@ function ContactForm() {
       }
 
       setResponseMessage("Message sent successfully!");
+      setMessageType("success");
       setFormData({ name: "", email: "", subject: "", message: "" });
     } catch (error) {
       setResponseMessage(
         error.message || "An error occurred. Please try again."
       );
+      setMessageType("error");
     } finally {
       setLoading(false);
     }
@@ -103,6 +124,19 @@ function ContactForm() {
     }
   };
 
+  // Get message styling based on type
+  const getMessageClasses = () => {
+    const baseClasses =
+      "mt-4 text-center text-sm px-4 py-2 rounded-md transition-all duration-300";
+
+    if (messageType === "success") {
+      return `${baseClasses} text-green-800 bg-green-100 border border-green-300 dark:text-green-200 dark:bg-green-900 dark:border-green-700`;
+    } else if (messageType === "error") {
+      return `${baseClasses} text-red-800 bg-red-100 border border-red-300 dark:text-red-200 dark:bg-red-900 dark:border-red-700`;
+    }
+    return `${baseClasses} text-gray-700 dark:text-gray-300`;
+  };
+
   return (
     <div className="w-full ">
       {/* Load reCAPTCHA script */}
@@ -114,9 +148,7 @@ function ContactForm() {
 
       <div className="leading-loose">
         {responseMessage && (
-          <p className="mt-4 text-center text-sm text-gray-700 dark:text-gray-300">
-            {responseMessage}
-          </p>
+          <div className={getMessageClasses()}>{responseMessage}</div>
         )}
         <form
           onSubmit={handleSubmit}

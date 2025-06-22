@@ -5,6 +5,8 @@ export const GET_PROJECT_BY_SLUG = gql`
     allProject(where: { slug: { current: { eq: $slug } } }) {
       title
       website
+      playStoreLink
+      appStoreLink
       slug {
         current
       }
@@ -25,6 +27,11 @@ export const GET_PROJECT_BY_SLUG = gql`
         name
       }
       challengeRaw
+      customLinks {
+        label
+        url
+        icon
+      }
     }
   }
 `;

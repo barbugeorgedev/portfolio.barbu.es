@@ -7,14 +7,18 @@ export const aboutMeData = [
   },
   {
     id: uuidv4(),
-    bio: "With a strong foundation in JavaScript (ES6+), React, Next.js, Node.js, PHP, and GraphQL, I specialize in monorepo architectures, modern UI frameworks, and backend solutions that power high-performance applications. My passion lies in bridging the gap between technology and business strategy, ensuring every project delivers measurable success.",
+    bio: "With a strong foundation in JavaScript (ES6+), React, Next.js, Node.js, PHP, and GraphQL, I specialize in monorepo architectures, modern UI frameworks, and backend solutions that power high-performance applications. I also build cross-platform mobile applications using React Native and Expo, enabling businesses to reach users on both iOS and Android from a unified codebase.",
   },
   {
     id: uuidv4(),
-    bio: "Beyond coding, I have a proven track record in leading teams, optimizing workflows, and driving technical innovation. I thrive in cross-functional collaboration, mentoring developers, and implementing efficient DevOps practices using Docker, CI/CD, and GitLab.",
+    bio: "My passion lies in bridging the gap between technology and business strategy, ensuring every project delivers measurable success. Beyond coding, I have a proven track record in leading teams, optimizing workflows, and driving technical innovation.",
   },
   {
     id: uuidv4(),
-    bio: "I’m always excited about new challenges, whether it’s leading technical roadmaps, refining processes, or building the next big thing. If you're looking for a developer who blends technical expertise with strategic thinking, let’s connect!",
+    bio: "I thrive in cross-functional collaboration, mentoring developers, and implementing efficient DevOps practices using Docker, CI/CD pipelines, and GitLab. Whether it’s architecting mobile-first platforms or streamlining complex infrastructures, I focus on delivering results.",
+  },
+  {
+    id: uuidv4(),
+    bio: "I’m always excited about new challenges—be it leading technical roadmaps, refining internal processes, or building the next big thing. If you're looking for a developer who blends deep technical expertise with strategic thinking, let’s connect!",
   },
 ];
